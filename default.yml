@@ -1,0 +1,88 @@
+# espanso configuration file
+
+# This is the default configuration file, change it as you like it
+# You can refer to the official documentation:
+# https://espanso.org/docs/
+
+# Matches are the substitution rules, when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # Dates
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"
+
+  # Shell commands
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo Hello from your shell"
+
+
+  # custom commands
+  - trigger: ":z"
+    replace: |
+             ---
+             title: title
+             date-created: {{date}}
+             date-updated: {{date}}
+             tags:
+             type: zettel
+             source: inspired/derived/note
+             status: incomplete
+             ...
+
+             notes here!
+
+             ### Parent(s) - you need to find at least one
+
+             ### Backlinks (generated automatically)
+    vars:
+      - name: date
+        type: match
+        params:
+          trigger: ":date"
+
+
+  - trigger: ":nindexz"
+    replace: |
+             ---
+             title: title
+             date-created: {{date}}
+             date-updated: {{date}}
+             tags:
+             type: index
+             source: -
+             status: complete
+             ...
+
+             # Name
+
+
+    vars:
+      - name: date
+        type: match
+        params:
+          trigger: ":date"
+
+
+  # custom latex commands
+  - trigger: ":tex"
+    replace: "$$\n$|$\n$$"
+
+  - trigger: ":matrix"
+    replace: "\\begin{bmatrix} $|$ \\end{bmatrix}"
+
+  - trigger: ":e"
+    replace: "^{}"
