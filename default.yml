@@ -45,9 +45,7 @@ matches:
 
              $|$
 
-             ### Parent(s) - you need to find at least one
-
-             ### Backlinks (generated automatically)
+             ### Backlinks
     vars:
       - name: date
         type: match
