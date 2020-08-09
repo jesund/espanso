@@ -43,7 +43,7 @@ matches:
              status: incomplete
              ...
 
-             notes here!
+             $|$
 
              ### Parent(s) - you need to find at least one
 
@@ -84,5 +84,5 @@ matches:
   - trigger: ":matrix"
     replace: "\\begin{bmatrix} $|$ \\end{bmatrix}"
 
-  - trigger: ":e"
+  - trigger: ":ex"
     replace: "^{}"
