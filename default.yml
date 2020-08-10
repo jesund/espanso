@@ -40,7 +40,7 @@ matches:
              tags:
              type: zettel
              source: inspired/derived/note
-             status: incomplete
+             status: #incomplete
              ...
 
              $|$
@@ -57,12 +57,8 @@ matches:
     replace: |
              ---
              title: title
-             date-created: {{date}}
-             date-updated: {{date}}
              tags:
              type: index
-             source: -
-             status: complete
              ...
 
              # Name
