@@ -34,7 +34,7 @@ matches:
   - trigger: ":z"
     replace: |
              ---
-             title: title
+             title: $|$
              date-created: {{date}}
              date-updated: {{date}}
              tags:
@@ -42,8 +42,6 @@ matches:
              source: inspired/derived/note
              status: #incomplete
              ...
-
-             $|$
 
              ### Backlinks
     vars:
@@ -56,7 +54,7 @@ matches:
   - trigger: ":nindexz"
     replace: |
              ---
-             title: title
+             title: $|$
              tags:
              type: index
              ...
@@ -72,11 +70,17 @@ matches:
 
 
   # custom latex commands
-  - trigger: ":tex"
+  - trigger: ":tb" # tex block
     replace: "$$\n$|$\n$$"
 
-  - trigger: ":matrix"
+  - trigger: ":tm" # tex matrix
     replace: "\\begin{bmatrix} $|$ \\end{bmatrix}"
 
-  - trigger: ":ex"
-    replace: "^{}"
+  - trigger: ":tx" # tex exponent
+    replace: "^{$|$}"
+
+  - trigger: ":tu" # tex subscript
+    replace: "_{$|$}"
+
+  - trigger: ":tf" # tex frac
+    replace: "\\frac{$|$}{}"
