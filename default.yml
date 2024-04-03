@@ -7,10 +7,6 @@
 # Matches are the substitution rules, when you type the "trigger" string
 # it gets replaced by the "replace" string.
 matches:
-  # Simple text replacement
-  - trigger: ":espanso"
-    replace: "Hi there!"
-
   # Dates
   - trigger: ":date"
     replace: "{{mydate}}"
@@ -20,55 +16,6 @@ matches:
         params:
           format: "%m/%d/%Y"
 
-  # Shell commands
-  - trigger: ":shell"
-    replace: "{{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "echo Hello from your shell"
-
-
-  # custom commands
-  - trigger: ":z"
-    replace: |
-             ---
-             title: $|$
-             date-created: {{date}}
-             date-updated: {{date}}
-             tags:
-             type: zettel
-             source: inspired/derived/note
-             status: #incomplete
-             ...
-
-             ### Backlinks
-    vars:
-      - name: date
-        type: match
-        params:
-          trigger: ":date"
-
-
-  - trigger: ":nindexz"
-    replace: |
-             ---
-             title: $|$
-             tags:
-             type: index
-             ...
-
-             # Name
-
-
-    vars:
-      - name: date
-        type: match
-        params:
-          trigger: ":date"
-
-
   # custom latex commands
   - trigger: ":tb" # tex block
     replace: "$$\n$|$\n$$"
@@ -76,7 +23,7 @@ matches:
   - trigger: ":tm" # tex matrix
     replace: "\\begin{bmatrix} $|$ \\end{bmatrix}"
 
-  - trigger: ":tx" # tex exponent
+  - trigger: ":tt" # tex exponent
     replace: "^{$|$}"
 
   - trigger: ":tu" # tex subscript
@@ -84,3 +31,61 @@ matches:
 
   - trigger: ":tf" # tex frac
     replace: "\\frac{$|$}{}"
+
+  - trigger: ":lim" # text limit
+    replace: "\\lim_{$|$ \\to }"
+
+  - trigger: ":cases" # bracket
+    replace: "\\begin{cases} \n$|$\n \\end{cases}"
+
+  - trigger: ":text" # text
+    replace: "\\text{$|$}"
+
+  - trigger: ":ts" # tex sum
+    replace: "\\sum_{n=$|$}^{}"
+
+  - trigger: ":p1" # formatted probability
+    replace: "\\mathbb P($|$)"    
+
+  - trigger: ":p2" # formatted probability
+    replace: "\\mathbb P_{$|$}()"    
+
+  - trigger: ":ev" # formatted expectation
+    replace: "\\mathbb E \\left[$|$\\right]"
+
+  - trigger: ":r1"
+    replace: "\\mathbb R"
+
+  - trigger: ":rn"
+    replace: "\\mathbb R^{$}"
+
+  - trigger: ":ta"
+    replace: "\\begin{align*}\n$|$\n\\end{align*}"
+
+  - trigger: ":dv"
+    replace: "\\nabla "
+  
+  - trigger: ":tp" 
+    replace: "\\left($|$\\right)"
+
+  - trigger: ":dp"
+    replace: "\\langle $|$\\rangle"
+
+  - trigger: ":mn"
+    replace: "\\min$|$"
+
+  - trigger: ":mx"
+    replace: "\\max$|$"
+
+# obsidian  commands
+  - trigger: ":ex"
+    replace: "> [!example]"
+            
+  - trigger: ":thm"
+    replace: "> [!theorem]"
+
+  - trigger: ":prf"
+    replace: "> [!proof]"
+
+  - trigger: ":def"
+    replace: "> [!definition]"
